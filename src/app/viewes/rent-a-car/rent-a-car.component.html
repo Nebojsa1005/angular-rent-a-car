@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="car" *ngIf="wantedCar">
+        <h1>{{ wantedCar.carName }}</h1>
+        <h3>Price: {{ wantedCar.pricePerDay | currency }}</h3>
+        <img [src]="wantedCar.carPicture">
+
+    </div>
+
+    
+</div>
+
+

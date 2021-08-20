@@ -1,0 +1,8 @@
+<div class="container">
+    <ul>
+        <li *ngFor="let customer of customers">
+            <h3>{{ customer.fullName }} - {{ customer.age }}</h3>
+            <p>{{ customer.address }}</p>
+        </li>
+    </ul>
+</div>

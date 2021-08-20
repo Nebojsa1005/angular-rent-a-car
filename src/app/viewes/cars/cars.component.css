@@ -1,0 +1,81 @@
+.container {
+    width: 100%;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+li {
+    position: relative;
+    margin-top: 30px;
+    width: 32%;
+    padding: 10px;
+    border-right: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+li h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+}
+
+li img {
+    width: 100%;
+}
+
+li span {
+    padding: 5px 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    background: red;
+    float: right;
+}
+
+button {
+    padding: 5px 25px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    background: red;
+    float: right;
+    border: none;
+    outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    outline: none;
+    height: 30px;
+    padding: 10px;
+    box-shadow: -7px 7px 15px 0px rgba(0,0,0,0.5);
+}
+
+.main-title {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}

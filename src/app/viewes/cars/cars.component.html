@@ -1,0 +1,14 @@
+<h1 class="main-title">Our cars</h1>
+<div class="container">
+    <input type="text" placeholder="Search for a car" [(ngModel)]="search" (input)="onSearch()">
+    <ul>
+        <li *ngFor="let car of cars">
+            <div class="car-container">
+                <span> {{ car.pricePerDay | currency}}</span>
+                <img [src]="car.carPicture" alt="Car Picture">
+                <h3>{{ car.carName }}</h3>
+            </div>
+            <button (click)="rent(car.id)">Rent</button>
+        </li>
+    </ul>
+</div>
