@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customerService.service';
 
 @Component({
@@ -7,11 +9,22 @@ import { CustomerService } from 'src/app/services/customerService.service';
   styleUrls: ['./cerate-acustomer.component.css']
 })
 export class CerateACustomerComponent implements OnInit {
-  fullName: string = ''
-  address: string = ''
-  age!: number | null
+
+  formGroup = this.fb.group({
+    firstName: [null, [Validators.required, Validators.minLength(4)]],
+    lastName: [null, [Validators.required, Validators.minLength(4)]],
+    phone: [null, [Validators.required, Validators.minLength(8)]],
+    address: [null, [Validators.required, Validators.minLength(3)]],
+    age: [null, [Validators.required, Validators.min(18)]],
+    email: [null, [Validators.required, Validators.email]],
+    numRented: 0,
+    lastRent: null
+  })
+
   constructor(
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private fb: FormBuilder,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,15 +32,13 @@ export class CerateACustomerComponent implements OnInit {
   }
 
   submit() {
-    const customerData = {
-      fullName: this.fullName,
-      address: this.address,
-      age: this.age
+    console.log(this.formGroup);
+    
+    if (!this.formGroup.invalid) {
+      this.customerService.postCustomer(this.formGroup.value).subscribe(() => {
+        return this.route.navigate(['/customers']);
+      })
     }
-    this.customerService.postCustomer(customerData).subscribe()
-    this.fullName = ''
-    this.address = ''
-    this.age = null
   }
 
 }

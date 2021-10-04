@@ -1,8 +1,13 @@
 <div class="container">
+    <a routerLink="/createCustomer" class="to-customers-create">Create a Customer</a>
     <ul>
         <li *ngFor="let customer of customers">
-            <h3>{{ customer.fullName }} - {{ customer.age }}</h3>
+            <h3>{{ customer.firstName }} - {{ customer.email }}</h3>
             <p>{{ customer.address }}</p>
+            <div class="buttons">
+                <button class="trash" (click)="deleteCustomer(customer)"><i class="fas fa-trash"></i></button>
+                <button class="edit" (click)="editCustomer(customer.id)"><i class="fas fa-pencil-alt"></i></button>
+            </div>
         </li>
     </ul>
 </div>

@@ -1,0 +1,74 @@
+.container {
+    margin-top: 130px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.car {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 90%;
+}
+
+.price-container {
+    margin: 10px 0;
+}
+
+.price {
+    padding: 8px 16px;
+    color: white;
+    background: red;
+    display: inline;
+}
+
+.specs {
+    width: 90%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.specs p {
+    margin-right: 10px;
+}
+    
+
+.customer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 30%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+select {
+    width: 100%;
+}
+
+.input-group {
+    width: 100%;
+}
+
+ul {
+    margin: 15px 0;
+    width: 100%;
+    list-style: none;
+}
+
+li {
+    width: 100%;
+    text-align: center
+}
+

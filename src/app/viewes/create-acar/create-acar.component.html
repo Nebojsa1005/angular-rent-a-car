@@ -1,6 +1,61 @@
-<form>
-    <input type="text" placeholder="Car name" [(ngModel)]="carName" name="carName">
-    <input type="text" placeholder="Car picture" [(ngModel)]="carPicture" name="carPicture">
-    <input type="number" placeholder="Value per day" [(ngModel)]="pricePerDay" name="pricePerDay">
-    <button (click)="submit()">Submit</button>
+<form [formGroup]="formGroup">
+    <div class="input-group">
+        <label for="brand">Car Brand:</label>
+        <input [ngClass]="{'invalid-input': formGroup.get('brand')?.invalid && formGroup.get('brand')?.touched}" type="text" id="brand" formControlName="brand">
+        <span class="invalid-text" *ngIf="formGroup.get('brand')?.touched && formGroup.get('brand')?.hasError('required')">This Field is Required</span>
+        <span class="invalid-text" *ngIf="formGroup.get('brand')?.hasError('minlength')">Must be more then 3 characters</span>
+    </div>
+
+    <div class="input-group">
+        <label for="model">Car Model:</label>
+        <input [ngClass]="{'invalid-input': formGroup.get('model')?.invalid && formGroup.get('model')?.touched}" type="text" id="model" formControlName="model">
+        <span class="invalid-text" *ngIf="formGroup.get('model')?.touched && formGroup.get('model')?.hasError('required')">This Field is Required</span>
+        <span class="invalid-text" *ngIf="formGroup.get('model')?.hasError('minlength')">Must be more then 3 characters</span>
+    </div>
+
+    <div class="input-group">
+        <label for="constructionYear">Construction Year:</label>
+        <input [ngClass]="{'invalid-input': formGroup.get('constructionYear')?.invalid && formGroup.get('constructionYear')?.touched}" type="text" id="constructionYear" formControlName="constructionYear">
+        <span class="invalid-text" *ngIf="formGroup.get('constructionYear')?.touched && formGroup.get('constructionYear')?.hasError('required')">This Field is Required</span>
+        <span class="invalid-text" *ngIf="formGroup.get('constructionYear')?.touched && formGroup.get('constructionYear')?.hasError('min')">Car must be 2005. or older</span>
+    </div>
+
+    <div class="input-group">
+        <label for="image">Image Url:</label>
+        <input [ngClass]="{'invalid-input': formGroup.get('image')?.invalid && formGroup.get('image')?.touched}" type="text" id="image" formControlName="image">
+        <span class="invalid-text" *ngIf="formGroup.get('image')?.touched && formGroup.get('image')?.hasError('required')">This Field is Required</span>
+    </div>
+
+    <div class="input-group">
+        <label for="fuelType">Fuel Type:</label>
+        <select [ngClass]="{'invalid-input': formGroup.get('fuelType')?.invalid && formGroup.get('fuelType')?.touched}" type="text" id="fuelType" formControlName="fuelType">
+            <option value="" disabled hidden>Select Fuel</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Dizel">Dizel</option>
+        </select>
+        <span class="invalid-text" *ngIf="formGroup.get('fuelType')?.touched && formGroup.get('fuelType')?.hasError('required')">This Field is Required</span>
+    </div>
+
+    <div class="input-group">
+        <label for="price">Price per Day:</label>
+        <input [ngClass]="{'invalid-input': formGroup.get('price')?.invalid && formGroup.get('price')?.touched}" type="text" id="price" formControlName="price">
+        <span class="invalid-text" *ngIf="formGroup.get('price')?.touched && formGroup.get('price')?.hasError('required')">This Field is Required</span>
+        <span class="invalid-text" *ngIf="formGroup.get('price')?.touched && formGroup.get('price')?.hasError('min')">Min price must be heigher then $10</span>
+    </div>
+    
+        <div class="input-group">
+            <label for="numberOfSeats">Number Of Seats:</label>
+            <input [ngClass]="{'invalid-input': formGroup.get('numberOfSeats')?.invalid && formGroup.get('numberOfSeats')?.touched}" type="text" id="numberOfSeats" formControlName="numberOfSeats">
+            <span class="invalid-text" *ngIf="formGroup.get('numberOfSeats')?.touched && formGroup.get('numberOfSeats')?.hasError('required')">This Field is Required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('numberOfSeats')?.touched && formGroup.get('numberOfSeats')?.hasError('min')">Min price must be heigher then $10</span>
+        </div>
+
+    <div class="input-group">
+        <label for="available">Number Available:</label>
+        <input [ngClass]="{'invalid-input': formGroup.get('available')?.invalid && formGroup.get('available')?.touched}" type="text" id="available" formControlName="available">
+        <span class="invalid-text" *ngIf="formGroup.get('available')?.touched && formGroup.get('available')?.hasError('required')">This Field is Required</span>
+        <span class="invalid-text" *ngIf="formGroup.get('available')?.touched && formGroup.get('available')?.hasError('min')">Min price must be heigher then $10</span>
+    </div>
+
+    <button (click)="submit()" [ngClass]="{'disabled': formGroup?.invalid}" [disabled]="formGroup?.invalid">Submit</button>
 </form>

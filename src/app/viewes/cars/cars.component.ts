@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CarsService } from 'src/app/services/carsService.service';
 
 @Component({
@@ -7,9 +8,11 @@ import { CarsService } from 'src/app/services/carsService.service';
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.css']
 })
-export class CarsComponent implements OnInit {
+export class CarsComponent implements OnInit, OnDestroy {
   cars: any = []
   search: string = ''
+  carsSub?: Subscription
+  filteredCarsSub?: Subscription
 
   constructor(
     private carsService: CarsService,
@@ -17,11 +20,14 @@ export class CarsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.carsService.getCars().subscribe(data => {
-      this.cars = data
-      console.log(data);
-      
+    this.carsSub = this.carsService.getCars().subscribe(data => {
+      this.cars = data      
     })
+  }
+
+  ngOnDestroy() {
+    this.carsSub?.unsubscribe()
+    this.filteredCarsSub?.unsubscribe()
   }
 
   onSearch() {
@@ -32,10 +38,16 @@ export class CarsComponent implements OnInit {
       })     
       this.cars = filteredCars 
     } else {
-      this.carsService.getCars().subscribe(data => {
+      this.carsSub = this.carsService.getCars().subscribe(data => {
         this.cars = data
       })
     }
+  }
+
+  filterSearch(e: string) {
+    this.filteredCarsSub = this.carsService.filterCars(e).subscribe((data: any) => {
+      this.cars = data
+    }) 
   }
 
   rent(id: number) {

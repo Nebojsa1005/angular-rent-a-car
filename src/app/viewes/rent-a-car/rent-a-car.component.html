@@ -1,12 +1,43 @@
 <div class="container">
     <div class="car" *ngIf="wantedCar">
-        <h1>{{ wantedCar.carName }}</h1>
-        <h3>Price: {{ wantedCar.pricePerDay | currency }}</h3>
-        <img [src]="wantedCar.carPicture">
-
+        <h1>{{ wantedCar.brand }}</h1>
+        <h3 class="price-container"><span class="price">Price: {{ wantedCar.price | currency }}</span></h3>
+        <img [src]="wantedCar.image">
+        <div class="specs">
+            <p>Number Available: {{ wantedCar.available }}</p>
+            <p>Fuel Type: {{ wantedCar.fuelType }}</p>
+            <p>Number of Seats: {{ wantedCar.numberOfSeats }}</p>
+            <p>Construction Year: {{ wantedCar.constructionYear }}</p>
+        </div>
     </div>
 
-    
+    <div class="customer">
+        <h2>Discounts on amount days if last rent is before 30 days</h2>
+        <ul>
+            <li>5 days - 5%</li>
+            <li>5 or more days - 7%</li>
+            <li>7 or more days - 10%</li>
+        </ul>
+
+        <span class="price">Full Price: {{ fullPrice | currency }}</span>
+
+        <h2>Select a customer</h2>
+        <form [formGroup]="formGroup">
+            <div class="input-group">
+                <label for="customer">Customer:</label>
+                <select [(ngModel)]="selectedCustomer" formControlName="customer" [(ngModel)]="selectedCustomer" [ngClass]="{'invalid-input': formGroup.get('customer')?.invalid && formGroup.get('customer')?.touched}">
+                    <option *ngFor="let c of customers" [ngValue]="c">{{c.firstName}} {{ c.lastName }}</option>
+                </select>
+                <span class="invalid-text" *ngIf="formGroup.get('customer')?.hasError('required') && formGroup.get('customer')?.touched">This field is required</span>
+            </div>
+            <div class="form-goup">
+                <label for="days">Place the number of days to use:</label>
+                <input type="number" formControlName="days" [(ngModel)]="numOfDays" [ngClass]="{'invalid-input': formGroup.get('days')?.invalid && formGroup.get('days')?.touched}">
+                <span class="invalid-text" *ngIf="formGroup.get('days')?.hasError('required') && formGroup.get('days')?.touched">This field is required</span>
+            </div>
+            <button [ngClass]="{'disabled': formGroup?.invalid}" (click)="submit()">Submit</button>
+        </form>
+    </div>
 </div>
 
 

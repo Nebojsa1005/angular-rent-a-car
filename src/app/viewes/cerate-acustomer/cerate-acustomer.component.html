@@ -1,9 +1,48 @@
 <div class="container">
     <h1>Crate a customer</h1>
-    <form>
-        <input type="text" placeholder="Full name" [(ngModel)]="fullName" name="fullName">
-        <input type="text" placeholder="Address" [(ngModel)]="address" name="address">
-        <input type="number" placeholder="Age" [(ngModel)]="age" name="age">
-        <button (click)="submit()">Submit</button>
+    <form [formGroup]="formGroup">
+        <div class="input-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" formControlName="firstName" [ngClass]="{'invalid-input': formGroup.get('firstName')?.invalid && formGroup.get('firstName')?.touched}">
+            <span class="invalid-text" *ngIf="formGroup.get('firstName')?.touched && formGroup.get('firstName')?.hasError('required')">This field is required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('firstName')?.touched && formGroup.get('firstName')?.hasError('minlength')">Must be at least 4 characthers long</span>
+        </div>
+
+        <div class="input-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" formControlName="lastName" [ngClass]="{'invalid-input': formGroup.get('lastName')?.invalid && formGroup.get('lastName')?.touched}">
+            <span class="invalid-text" *ngIf="formGroup.get('lastName')?.touched && formGroup.get('lastName')?.hasError('required')">This field is required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('lastName')?.touched && formGroup.get('lastName')?.hasError('minlength')">Must be at least 4 characthers long</span>
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Phone Number:</label>
+            <input type="number" id="phone" formControlName="phone" [ngClass]="{'invalid-input': formGroup.get('phone')?.invalid && formGroup.get('phone')?.touched}">
+            <span class="invalid-text" *ngIf="formGroup.get('phone')?.touched && formGroup.get('phone')?.hasError('required')">This field is required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('phone')?.touched && formGroup.get('phone')?.hasError('minlength')">Must be at least 8 characthers long</span>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Customer Email:</label>
+            <input type="email" id="email" formControlName="email" [ngClass]="{'invalid-input': formGroup.get('email')?.invalid && formGroup.get('email')?.touched}">
+            <span class="invalid-text" *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.hasError('required')">This field is required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('email')?.touched && formGroup.get('email')?.hasError('email')">Must be a valid email</span>
+        </div>
+
+        <div class="input-group">
+            <label for="address">Customer Address:</label>
+            <input type="text" id="address" formControlName="address" [ngClass]="{'invalid-input': formGroup.get('address')?.invalid && formGroup.get('address')?.touched}">
+            <span class="invalid-text" *ngIf="formGroup.get('address')?.touched && formGroup.get('address')?.hasError('required')">This field is required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('address')?.touched && formGroup.get('address')?.hasError('minlength')">Must be at least 3 characthers long</span>
+        </div>
+
+        <div class="input-group">
+            <label for="age">Customer Age:</label>
+            <input type="number" id="age" formControlName="age" [ngClass]="{'invalid-input': formGroup.get('age')?.invalid && formGroup.get('age')?.touched}">
+            <span class="invalid-text" *ngIf="formGroup.get('age')?.touched && formGroup.get('age')?.hasError('required')">This field is required</span>
+            <span class="invalid-text" *ngIf="formGroup.get('age')?.touched && formGroup.get('age')?.hasError('minlength')">Must be at least 18 YO</span>
+        </div>
+
+        <button (click)="submit()" [ngClass]="{'disabled':formGroup.invalid}">Submit</button>
     </form>
 </div>

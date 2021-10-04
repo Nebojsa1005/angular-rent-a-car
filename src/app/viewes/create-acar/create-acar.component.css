@@ -1,16 +1,11 @@
 form {
-    width: 100%;
+    width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    margin-top: 200px;
-    background: url('https://images.unsplash.com/photo-1541794574556-f84b8ab37baa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');
-}
-
-input {
-    box-shadow: none;
-    margin: 10px 0;
+    margin: 30px auto 30px auto;
 }
 
 button {
@@ -22,5 +17,4 @@ button {
     font-size: 18px;
     outline: none;
     background: black;
-    margin-top: 20px;
 }
